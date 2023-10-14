@@ -1,9 +1,21 @@
+# FROM node
+
+# RUN mkdir -p /home/app
+
+# COPY . /home/app
+
+# EXPOSE 3000
+
+# CMD ["node", "/home/app/index.js"]
+
 FROM node
 
-RUN mkdir -p /home/app
+WORKDIR /app
 
-COPY . /home/app
+COPY package.json /app
 
-EXPOSE 3000
+RUN npm install
 
-CMD ["node", "/home/app/index.js"]
+COPY . .
+
+CMD ["npm", "start"]

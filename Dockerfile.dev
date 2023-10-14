@@ -1,6 +1,14 @@
 FROM node
 
+RUN npm i -g express
 RUN npm i -g nodemon
+RUN npm i -g connect-flash
+RUN npm i -g ejs-mate
+RUN npm i -g mongoose
+RUN npm i -g morgan
+RUN npm i -g passport
+RUN npm i -g passport-local
+RUN npm i -g bcrypt-nodejs
 
 RUN mkdir -p /home/app
 
@@ -8,4 +16,31 @@ WORKDIR /home/app
 
 EXPOSE 3000
 
-CMD ["nodemon", "index.js"]
+CMD ["nodemon", "src/index.js"]
+
+
+
+
+# # Usamos la imagen base de Node.js
+# FROM node:14
+
+# # Establecemos el directorio de trabajo en la imagen
+# WORKDIR /app
+
+# # Copiamos el archivo package.json y package-lock.json para instalar dependencias
+# COPY package*.json ./
+
+# # Instalamos las dependencias
+# RUN npm install
+
+# # Copiamos todos los archivos al directorio de trabajo en la imagen
+# COPY . .
+
+# # Puerto en el que escuchará la aplicación
+# EXPOSE 3000
+
+# # Comando para ejecutar la aplicación con nodemon
+# CMD ["npm", "start"]
+
+
+
