@@ -1,18 +1,22 @@
 version: "3.9"
 services:
-  chanchito:
+  #configuración de la aplicación de login
+  login:
     build: .
     ports:
       - "3000:3000"
     links:
-      - monguito
-  monguito:
+      - dbLogin
+    volumes:
+      - .:/home/app
+  #configuración de la base de datos del login
+  dbLogin:
     image: mongo
     ports:
-      - "27017:27017"
+      - "27018:27017"
     environment:
-      MONGO_INITDB_ROOT_USERNAME: nico
-      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_ROOT_USERNAME: dbAdmin
+      MONGO_INITDB_ROOT_PASSWORD: tmp123.
     volumes:
       - mongo-data:/data/db
 volumes:

@@ -1,47 +1,24 @@
-const router = require('express').Router();
-const passport = require('passport');
+const express = require('express');
+const router = express.Router();
 
-router.get('/', (req, res, next) => {
-  res.render('index');
+router.get('/', (req, res) => {
+    res.render('index.ejs');
 });
 
-router.get('/signup', (req, res, next) => {
-  res.render('signup');
+router.get('/registro', (req, res) => {
+    
 });
 
-router.post('/signup', passport.authenticate('local-signup', {
-  successRedirect: '/profile',
-  failureRedirect: '/signup',
-  failureFlash: true
-})); 
-
-router.get('/signin', (req, res, next) => {
-  res.render('signin');
+router.post('/registro', (req, res) => {
+    
 });
 
-
-router.post('/signin', passport.authenticate('local-signin', {
-  successRedirect: '/profile',
-  failureRedirect: '/signin',
-  failureFlash: true
-}));
-
-router.get('/profile',isAuthenticated, (req, res, next) => {
-  res.render('profile');
+router.get('/ingreso', (req, res) => {
+    
 });
 
-router.get('/logout', (req, res, next) => {
-  req.logout();
-  res.redirect('/');
+router.post('/ingreso', (req, res) => {
+    
 });
-
-
-function isAuthenticated(req, res, next) {
-  if(req.isAuthenticated()) {
-    return next();
-  }
-
-  res.redirect('/')
-}
 
 module.exports = router;

@@ -1,21 +1,14 @@
-# FROM node
-
-# RUN mkdir -p /home/app
-
-# COPY . /home/app
-
-# EXPOSE 3000
-
-# CMD ["node", "/home/app/index.js"]
-
 FROM node
 
-WORKDIR /app
+RUN npm i -g nodemon
+RUN mkdir -p /home/app
 
-COPY package.json /app
+WORKDIR /home/app
 
-RUN npm install
+# COPY package*.json ./
 
-COPY . .
+# RUN npm install
 
-CMD ["npm", "start"]
+EXPOSE 3000
+
+CMD [ "nodemon", "./src/server.js" ]
