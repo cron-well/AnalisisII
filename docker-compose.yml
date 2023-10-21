@@ -13,10 +13,10 @@ services:
   dbLogin:
     image: mongo
     ports:
-      - "27018:27017"
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: dbAdmin
-      MONGO_INITDB_ROOT_PASSWORD: tmp123.
+      - "27017:27017"
+    # environment:
+    #   MONGO_INITDB_ROOT_USERNAME: dbAdmin
+    #   MONGO_INITDB_ROOT_PASSWORD: tmp123.
     volumes:
       - mongo-data:/data/db
 volumes:
