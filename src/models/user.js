@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
-const bcryhpt = require('bcrypt-nodejs');
-const {Schema} = mongoose;
+const bcrypt = require('bcrypt-nodejs');
+
+const { Schema } = mongoose;
 
 const userSchema = new Schema({
     email: String,
@@ -8,12 +9,11 @@ const userSchema = new Schema({
 });
 
 userSchema.methods.encryptPassword = (password) => {
-    return bcryhpt.hashSync(password, bcryhpt.genSaltSync(10));
-}
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+};
 
 userSchema.methods.comparePassword = function (password) {
-    return bcryhpt.compareSync(password, this.password);
-}
+    return bcrypt.compareSync(password, this.password);
+};
 
-module.exports = mongoose.model('users', userSchema);
-
+module.exports = mongoose.model('user', userSchema);

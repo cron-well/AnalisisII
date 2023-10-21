@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const { monbodb, mongodb } = require('./keys');
 
 mongoose.connect(mongodb.URI, {useNewUrlParser: true})

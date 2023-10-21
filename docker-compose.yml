@@ -1,14 +1,14 @@
 version: "3.9"
 services:
   #configuración de la aplicación de login
-  login:
-    build: .
-    ports:
-      - "3000:3000"
-    links:
-      - dbLogin
-    volumes:
-      - .:/home/app
+  # login:
+  #   build: .
+  #   ports:
+  #     - "3000:3000"
+  #   links:
+  #     - dbLogin
+  #   volumes:
+  #     - .:/home/app
   #configuración de la base de datos del login
   dbLogin:
     image: mongo

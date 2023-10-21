@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ingreso y registro</title>
+</head>
+<body>
+  <!-- NAVIGATION -->
+  <% if (!user) { %>
+  <a href="/registro">Registro</a>
+  <a href="/ingreso">Ingreso</a>
+  <% } else { %>
+  <a href="/logout">Salir</a>
+  <a href="/perfil">Perfil</a>
+  <% } %>
+
+  <%if (signinMessage) {%>
+    <p><%= signinMessage %></p>
+  <% } %>
+  <%if (signupMessage) {%>
+    <p><%= signupMessage %></p>
+  <% } %>
+
+  <%- body %>
+</body>
+</html>

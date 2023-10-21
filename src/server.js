@@ -1,9 +1,9 @@
 const express = require('express');
-const engine = require('ejs-mate');
 const path = require('path');
-const passport = require('passport');
+const engine = require('ejs-mate');
+const flash = require('connect-flash');
 const session = require('express-session');
-
+const passport = require('passport');
 const morgan = require('morgan');
 
 //Inicializaciones
@@ -25,8 +25,16 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use((req, res, next) => {
+    app.locals.signupMessage = req.flash('signupMessage');
+    app.locals.signinMessage = req.flash('signinMessage');
+    app.locals.user = req.user;
+    next();
+});
 
 //Rutas
 app.use('/', require('./routes/index.js'));

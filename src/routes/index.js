@@ -1,5 +1,4 @@
-const express = require('express');
-const router = express.Router();
+const router = require('express').Router();
 const passport = require('passport');
 
 router.get('/', (req, res) => {
@@ -17,16 +16,34 @@ router.post('/registro', passport.authenticate('local-registro', {
 }));
 
 router.get('/ingreso', (req, res) => {
-    
+    res.render('ingreso.ejs'); 
 });
 
-router.post('/ingreso', (req, res) => {
-    
-});
+router.post('/ingreso', passport.authenticate('local-ingreso', {
+    successRedirect: '/perfil',
+    failureRedirect: '/ingreso',
+    passReqToCallback: true
+}));
 
-router.get('/perfil', (req, res) => {
+router.get('/perfil', isAuthenticated, (req, res, next) => {
     res.render('perfil.ejs');        
 });
 
+router.get('/logout', (req, res, next) => {
+    req.logout(function(err) {
+        if (err) {
+            return next(err);
+        }
+        res.redirect('/');
+    });
+});
+
+function isAuthenticated(req, res, next) {
+    if(req.isAuthenticated()) {
+      return next();
+    }
+  
+    res.redirect('/')
+}
 
 module.exports = router;
